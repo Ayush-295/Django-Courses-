@@ -1,0 +1,4 @@
+#day 2 :
+
+1.sbse phle kri base templating jisme ki aisa kiya ki base.html constant rkha aur baaki cheezein usi m load ho rhi h ....uske liye humne use kiya hai{% extends base.html%}... to aise ho jayega
+2.

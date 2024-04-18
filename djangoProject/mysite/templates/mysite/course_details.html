@@ -1,0 +1,59 @@
+{% extends "mysite/base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="position:sticky;">
+                <div class="card shadow" style="width: 18rem;">
+                    <img src="{{ course.thumbnail_url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fa-solid fa-clock"></i> Course Duration
+                            : {{ course.course_length }}</li>
+                        <li class="list-group-item"><i class="fa-solid fa-play"></i> Number of lessons :{{ lesson.count}}</li>
+                        <li class="list-group-item">Author : {{ course.author }}</li>
+                    </ul>
+                    <div class="card-body">
+                        <button class="btn btn-info">Subscribe now! </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="accordion accordion-flush shadow" id="accordionFlushExample">
+                    {% for section in sections %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse{{ section.id }}" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                    {{ section.title }}
+                                </button>
+                            </h2>
+                            <div id="flush-collapse{{ section.id }}" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ol>
+                                        {% for lesson in lesson %}
+                                            {% if lesson.section == section %}
+                                                <li><a href="/courses/{{ course.id }}/{{ lesson.id}}" style="text-decoration: none">{{ lesson.title }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

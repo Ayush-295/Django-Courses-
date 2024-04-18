@@ -1,0 +1,49 @@
+{% extends "mysite/base.html" %}
+
+{% block content %}
+    <div class="container "
+         style="margin-top: 5%; display: flex; justify-content: center; align-items:center; flex-direction: column; gap: 4vh">
+        <div class="card">
+            <h5 class="card-header" style="line-height: 5vh">Email Subscription</h5>
+            <div class="card-body">
+                <h5 class="card-title text-center">Fill the form to Subscribe</h5>
+                <p class="card-text">You'll get to know whenever i post something.</p>
+
+
+                {% if optedin %}
+                <h2>Thank You</h2>
+                {% else %}
+                <form action="{% url 'optin' %}" method="post">
+                    {% csrf_token %}
+                    <div class="container "
+                         style="margin-top: 5%; display: flex; justify-content: left; align-items:baseline; flex-direction: column; gap: 4vh">
+                        <div class="form-row col-md-9">
+                            <div class="form-group">
+                                <label for="fname">Name</label>
+                                <input type="text" name="name" class="form-control" id="name"
+                                       placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-row col-md-9">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email"
+                                       placeholder="Email" >
+                            </div>
+                        </div>
+                        <div class="form-row col-md-9">
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" name="country" class="form-control" id="country"
+                                       placeholder="Country">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock %}
